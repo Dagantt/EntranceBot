@@ -33,11 +33,11 @@ async def play(ctx, url):
     voice_channel = author.voice.channel
     vc = await VoiceChannel.connect(voice_channel)
 
-    player = await vc.create_ytdl_player(url)
-    player.start()
-
-    response = 'Playing ' + url + " in " + voice_channel;
+    response = 'Playing ' + url + " in " + voice_channel.name;
     await ctx.send(response)
+
+    player = await vc.play() #TODO
+    player.start()
 
 bot.run(TOKEN)
 
